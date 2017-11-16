@@ -3,7 +3,10 @@
 #include "Eigen/Dense"
 
 class KalmanFilter {
-public:
+ private:
+  void RecalcStateVectorAndCovariance(const Eigen::VectorXd &y);
+
+ public:
 
   // state vector
   Eigen::VectorXd x_;
