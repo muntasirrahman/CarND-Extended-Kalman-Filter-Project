@@ -28,7 +28,6 @@ void KalmanFilter::Predict() {
     * predict the state
   */
   x_ = F_ * x_;
-  MatrixXd Ft = F_.transpose();
   P_ = F_ * P_ * F_.transpose() + Q_;
 }
 
@@ -75,7 +74,6 @@ void KalmanFilter::RecalcStateVectorAndCovariance(const VectorXd &y) {
   MatrixXd S = H_ * P_ * Ht + R_;
   MatrixXd kalman_gain = P_ * Ht * S.inverse();
 
-  // prediction
   x_ = x_ + (kalman_gain * y);
   long x_size = x_.size();
   MatrixXd I = MatrixXd::Identity(x_size, x_size);
